@@ -3,6 +3,7 @@
 # Exclude a folder and its contents
 /.streamlit/
 /BACKUPS/
-
+/.venv/
+/venv/
 # Exclude all files of a specific type
 *.env

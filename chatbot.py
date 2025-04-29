@@ -19,7 +19,7 @@ import streamlit as st
 import pandas as pd
 import random
 import time
-from openai import OpenAI
+# from openai import OpenAI
 import google.generativeai as Ggenai
 from google.protobuf.struct_pb2 import Struct # Import Struct for safer dict conversion
 #import textwrap3 as textwrap
@@ -40,38 +40,28 @@ from PIL import Image
 import base64
 import io
 import traceback
-# For sending email
-# import sendgrid
-# from sendgrid import SendGridAPIClient
-# from sendgrid.helpers.mail import Mail
-# from joblib import load
-# For getting google sheet content
-# import requests
-# from bs4 import BeautifulSoup
-# For update knowledge base
-# import Update_KB
 
 embedding_model = "text-embedding-ada-002"
 
 try:
-    OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+    #OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
     GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"] 
-    PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
-    SENDGRID_API_KEY = st.secrets["SENDGRID_API_KEY"]
+    #PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
+    #SENDGRID_API_KEY = st.secrets["SENDGRID_API_KEY"]
     SUPABASE_KEY = st.secrets["SUPABASE_KEY"]
 except Exception as e:
     # Secrets not found in Streamlit, try loading from local .env file
     load_dotenv()
-    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+    #OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
     GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")    
-    PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
-    SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
+    #PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+    #SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
     SUPABASE_KEY = os.getenv("SUPABASE_KEY")
-    if not OPENAI_API_KEY or not PINECONE_API_KEY or not SENDGRID_API_KEY or not SUPABASE_KEY:
+    if not SUPABASE_KEY or not GOOGLE_API_KEY: #not OPENAI_API_KEY or not PINECONE_API_KEY or not SENDGRID_API_KEY or 
         st.error("Environment file error or secrets not found!")
         st.error(e)
 # Set OpenAI API key
-gpt = OpenAI(api_key = OPENAI_API_KEY)
+#gpt = OpenAI(api_key = OPENAI_API_KEY)
 Ggenai.configure(api_key = GOOGLE_API_KEY)
 #gemini = Ggenai.GenerativeModel(model_name="gemini-2.0-pro-exp") 
 gemini = Ggenai.GenerativeModel(
