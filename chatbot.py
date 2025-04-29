@@ -274,7 +274,6 @@ if 'search_expander_status' not in st.session_state:
 initialize()
 # STREAMLIT INTERFACE
 with st.sidebar:
-  #st.sidebar.image("CSTU.png", use_container_width=True)
   #st.sidebar.image("robo.gif", use_container_width=True)
   # Set the text color and alignment for the selectbox label and options
   st.markdown("""
@@ -430,13 +429,6 @@ with st.expander("**SEARCH FOR PRODUCTS BASED ON USER-SELECTED FILTERS AND IMAGE
               "_num_days": str_to_int(st.session_state.num_days),
           }
           search_result = fetch_product(filters)
-
-    #st.markdown("<br><br>", unsafe_allow_html=True)
-    #submit_button = st.markdown('<button title="Submit your question"> ⏎ </button>', unsafe_allow_html=True)
-    #submit_button = st.button(" ⏎ ", key="submit_button")
-    #if st.markdown('<button title="Search products">🔍</button>', unsafe_allow_html=True): #Search button
-      #if st.button("Upload Image ", key="upload_button"):
-        #st.markdown("<font color='darkblue'><b><p style='text-align: center; line-height: 0;'>Content generation</p></b></font>", unsafe_allow_html=True)
   with col2:
     # Handle map click events
     # print("Click data:", st.session_state['click_data'])  For debug
@@ -578,12 +570,6 @@ if st.session_state.chat_history:
             if chat["role"] == "user" and prev_role != "user": st.markdown("**YOU:**")
             elif chat["role"] == "assistant" and prev_role != "assistant": st.markdown("**MATCHDER:**")
             elif chat["role"] == "system" and prev_role != "system": st.markdown("**SYSTEM:**")
-            """if isinstance(chat["content"], list):
-                st.write("Products match your query are listed as follows:\n")
-                st.dataframe(pd.DataFrame(chat["content"]), column_config={'MAP LINK': st.column_config.LinkColumn()})
-            elif isinstance(chat["content"], pd.DataFrame):
-                st.write("Products match your query are listed as follows:\n")
-                st.dataframe(chat["content"], column_config={'MAP LINK': st.column_config.LinkColumn()})"""
             # Check if content is a list (assumed to be list of dicts) or a pandas DataFrame
             if isinstance(chat["content"], (list, pd.DataFrame)):
                 st.write("Products match your query are listed as follows:\n")    
